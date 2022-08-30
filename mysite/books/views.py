@@ -4,15 +4,15 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from .models import Book
+from django.template import loader
 
 def index(request):
     all_books = Book.objects.all()
-    html = ''
-    for book in all_books:
-        path = '/books/' + str(book.id) + '/'
-        html += '<a href = "' + path + '">' + str(book.name) + '</a><br>'
-
-    return HttpResponse(html)
+    template = loader.get_template('books/index.html')
+    context = {
+        'all_books' : all_books
+    }
+    return HttpResponse(template.render(context, request))
 
 def detail(request, book_id):
     return HttpResponse("<h2>Details for Book ID:" + str(book_id) + "</h2>")
