@@ -1,14 +1,20 @@
 
-{% load static %}
+{% extends 'books/base.html' %}
+
+{% block body %}
+<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'books/style.css' %}" />
+        <!-- CSS only -->
     </head>
         <body>
-            <ul>
-                {% for book in all_books %}
-                    <li><a href="{% url 'books:detail' book.id %}">{{book.name}}</a></li>
-                {% endfor %}
-            </ul>
+                  
+                    <ul>
+                        {% for book in all_books %}
+                            <li><a href="{% url 'books:detail' book.id %}">{{book.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+            <!-- JavaScript Bundle with Popper -->
         </body>
 </html>
+{% endblock %}
